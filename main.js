@@ -236,7 +236,7 @@ function longestWord(sen) {
     return longestWordArr;
   }
 }
-
+// SOLUTION 2
 //function longestWord(sen) {
 
 //
@@ -254,4 +254,67 @@ function longestWord(sen) {
 //     }
 //   });
 // return outputArr.length > 1 ? outputArr : outputArr[0];
+//}
+
+// CHALLENGE 8: ARRAY CHUNKING
+// Split an array into chunked arrays of a specific length
+// ex. chunkArray([1, 2, 3, 4, 5, 6, 7], 3) === [[1, 2, 3],[4, 5, 6],[7]]
+// ex. chunkArray([1, 2, 3, 4, 5, 6, 7], 2) === [[1, 2],[3, 4],[5, 6],[7]]
+
+function chunkArray(arr, len) {
+  // SOLUTION 1
+
+  // // Init chunked arr
+  // const chunkedArr = [];
+  // // Set index
+  // let i = 0;
+
+  // // Loop while index is less than the array length
+  // while (i < arr.length) {
+  //   // Slice out from the index to the index + the chunk length nd push on to the chunked array
+  //   chunkedArr.push(arr.slice(i, i + len));
+  //   // Increment by chunk length
+  //   i += len;
+  // }
+
+  // return chunkedArr;
+
+  // SOLUTION 2
+
+  // Init chunked arr
+  const chunkedArr = [];
+
+  // Loop through arr
+  arr.forEach(val => {
+    // Get last element
+    const last = chunkedArr[chunkedArr.length - 1];
+
+    // Check if last and if last length is equal to the chunk len
+    if (!last || last.length === len) {
+      chunkedArr.push([val]);
+    } else {
+      last.push(val);
+    }
+  });
+
+  return chunkedArr;
+}
+// SOLUTION 3
+//function chunkArray(arr, len) {
+//    let i=0, output = [], currArr = [];
+//
+//    arr.forEach(element => {
+//        currArr.push(element);
+//        i++;
+//        if (i%len === 0 || i === arr.length) {
+//            output.push(currArr);
+//            currArr = [];
+//            }
+//        });
+//    return output;
+
+// SOLUTION 4
+// return Array.from({ length: Math.ceil(arr.length / len) }, (v, i) =>
+// arr.slice(i * len, i * len + len)
+// );
 //}
